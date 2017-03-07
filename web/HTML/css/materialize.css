@@ -1,0 +1,80 @@
+input[type="text"]:focus {
+  outline: none;
+}
+
+
+.style-1 input[type="text"] {
+  padding: 20px 25px;
+  transition: box-shadow 0.3s, border 0.3s;
+  text-transform: uppercase;
+  letter-spacing:2px;
+  -webkit-font-smoothing: antialiased;
+  font-family: Hind, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #515769;
+  background: #fff;
+  border-color: transparent;
+  border-width: 1px;
+  cursor: pointer;
+  width:270px;
+}
+.style-1 input[type="text"]:focus,
+.style-1 input[type="text"].focus {
+  border: solid 1px #707070;
+  box-shadow: 0 0 5px 2px #969696;
+  width:700px;
+  transition-duration: .3s;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(.7, 1, .7, 1);
+  -webkit-transition: all .3s ease-out;
+  cursor: text;
+}
+
+.style-1 input[type="text"]:not(:focus),
+.style-1 input[type="text"]:not(:focus) {
+  width:270px;
+  transition-duration: .3s;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(.7, 1, .7, 1);
+  -webkit-transition: all .3s ease-out;
+}
+
+.style-1 input[type="text"]:hover:not(:focus),
+.style-1 input[type="text"].hover:not(:focus) {
+  color: #fff;
+  background: #17bed2;
+  text-shadow: none;
+  transition-duration: .3s;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(.7, 1, .7, 1);
+  -webkit-transition: all .3s ease-out;
+}
+
+a { cursor: pointer; }
+/*.white-popup {
+  width:854px;
+  height:480px;
+}
+
+.mfp-with-zoom .mfp-container,
+.mfp-with-zoom.mfp-bg {
+  opacity: 0;
+  -webkit-backface-visibility: hidden;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+.mfp-with-zoom.mfp-ready .mfp-container {
+    opacity: 1;
+}
+.mfp-with-zoom.mfp-ready.mfp-bg {
+    opacity: 0.8;
+}
+
+.mfp-with-zoom.mfp-removing .mfp-container,
+.mfp-with-zoom.mfp-removing.mfp-bg {
+  opacity: 0;
+}*/

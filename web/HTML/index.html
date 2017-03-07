@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+    <!-- BEGIN HEAD -->
+    <head>
+        <meta charset="utf-8"/>
+        <title>Twitch Highlight Kappa</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <meta content="" name="description"/>
+        <meta content="CCC" name="author"/>
+
+        <!-- GLOBAL MANDATORY STYLES -->
+        <link href="http://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet" type="text/css">
+        <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css"/>
+        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/sweetalert.css" rel="stylesheet" type="text/css"/>
+
+        <!-- PAGE LEVEL PLUGIN STYLES -->
+        <link href="css/animate.css" rel="stylesheet">
+
+        <!-- THEME STYLES -->
+        <link href="css/layout.min.css" rel="stylesheet" type="text/css"/>
+
+        <!-- Favicon -->
+        <link rel="Shortcut Icon" type="image/x-icon" href="img/favicon.ico" />
+        <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+        <link rel="stylesheet" href="css/colorbox.css">
+    </head>
+    <!-- END HEAD -->
+
+    <!-- BODY -->
+    <body id="body" data-spy="scroll" data-target=".header">
+      <!-- <div id="Highlight" class="mfp-hide"></div> -->
+        <!--========== HEADER ==========-->
+        <header class="header navbar-fixed-top">
+            <!-- Navbar -->
+            <nav class="navbar" role="navigation">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="menu-container js_nav-item">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="toggle-icon"></span>
+                        </button>
+
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a class="logo-wrap" href="#body">
+                                <img class="logo-img logo-img-main" src="img/logo.png" alt="Asentus Logo">
+                                <img class="logo-img logo-img-active" src="img/logo_dark.png" alt="Asentus Logo">
+                            </a>
+                        </div>
+                        <!-- End Logo -->
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse nav-collapse">
+                        <div class="menu-container">
+                            <ul class="nav navbar-nav navbar-nav-right">
+                                <li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="#body">Home</a></li>
+                                <li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="#latest">Latest HighLight</a></li>
+                                <li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="#popular">Popular HighLight</a></li>
+                                <li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="#contact">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Navbar Collapse -->
+                </div>
+            </nav>
+            <!-- Navbar -->
+        </header>
+        <!--========== END HEADER ==========-->
+
+        <!--========== SLIDER ==========-->
+        <!--For Twitch Player-->
+        <div style='display:none'>
+            <div style="margin: 0px auto;background-color:black" id="Highlight_div">
+                <div style="width: 854px;height: 480px;margin: 0px auto;background-color:black" id="Highlight"></div>
+                <div style="margin: 0px auto; width:100%;text-align:center;padding-top:20px;padding-bottom:20px;" id="control_bar">
+                    <a sytle="font-family: Hind,sans-serif;" onClick='prevHL()' id="prevHL">◀　Prev</a>
+                    <span style="width:25%;display:inline-block;font-size:18px;font-family: Hind,sans-serif" id="HLtitle">Twitch Hight #1</span>
+                    <a sytle="font-family: Hind,sans-serif;" onClick='nextHL()' id="nextHL">Next　▶</a>
+                </div>
+            </div>
+        </div>
+        <div style='display:none'>
+            <div style="width: 854px;height: 480px;margin: 0px auto;background-color:white" id="Wordcloud">
+              <div style="width: 100%;height:100%;margin: 0px auto" id="tag_vis"></div>
+            </div>
+        </div>
+
+
+
+        <div class="promo-block">
+            <div class="container">
+                <div class="margin-b-40">
+                    <h1 class="promo-block-title">Twitch Highlight Kappa.</h1>
+                    <p class="promo-block-text">Automatic highlight for Twitch VOD. Highlight your time anytime.</p>
+                </div>
+
+                <div class="row">
+                      <div class="style-1 col-md-8 col-md-offset-2">
+                        <!-- <input class="col-md-6 col-md-offset-3" type="text" autocomplete="off" value="Get Your Highlight" id="keyword"> -->
+                        <input type="text" autocomplete="off" value="►　Get Your Highlight" onfocus="this.value='';this.placeholder='Please enter the url of vod.';" onblur="this.value='►　Get Your Highlight';" id="keyword">
+                      </div>
+                </div>
+            </div>
+        </div>
+        <!--========== SLIDER ==========-->
+
+
+        <!--========== PAGE LAYOUT ==========-->
+        <!-- Products -->
+        <div id="latest">
+            <div class="container content-lg">
+                <div class="row text-center margin-b-40">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <h2>Latest HighLights</h2>
+                        <p>The Latest HighLight recommand to you.</p>
+                    </div>
+                </div>
+                <!--// end row -->
+
+                <div class="row" id="latest1">
+                    <!-- <div class="col-sm-4 sm-margin-b-50">
+                        <div class="margin-b-20">
+                            <img class="img-responsive wow fadeIn test-popup-link" onClick=getHL('id') style="width:100%;cursor: pointer;" src="https://static-cdn.jtvnw.net/s3_vods/e3e9d02273_asiagodtonegg3be0_24112143456_575679468/thumb/thumb0-320x180.jpg" alt="Latest Products Image" data-wow-duration=".3" data-wow-delay=".1s">
+                        </div>
+                        <div style="margin:10px">
+                          <h4 style="width:100%;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;"><a href="#">【統神】統粉斗內日常Part3 精神耗弱篇 2017/01/02</a></h4>
+                          <p>亞洲統神(asiagodtonegg3be0)<span class="text-uppercase margin-l-20">Jan 3, 2017</span></p>
+                          <a class="link" href="#">Read More</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 sm-margin-b-50">
+                        <div class="margin-b-20">
+                            <img class="img-responsive wow fadeIn" style="width:100%"  src="https://static-cdn.jtvnw.net/v1/AUTH_system/vods_8dd8/asiagodtonegg3be0_24112143456_575679468/thumb/thumb0-320x180.jpg" alt="Latest Products Image" data-wow-duration=".3" data-wow-delay=".2s">
+                        </div>
+                        <div style="margin:10px">
+                          <h4 style="width:100%;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;"><a href="#">(B.F.)1/021新年新C望asiagodtone</a></h4>
+                          <p>亞洲統神(asiagodtonegg3be0)<span class="text-uppercase margin-l-20">Jan 2, 2017</span></p>
+                          <a class="link" href="#">Read More</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 sm-margin-b-50">
+                        <div class="margin-b-20">
+                            <img class="img-responsive wow fadeIn" style="width:100%"  src="https://static-cdn.jtvnw.net/s3_vods/4070a59568_asiagodtonegg3be0_24101036192_574985264//thumb/thumb111334214-320x180.jpg" alt="Latest Products Image" data-wow-duration=".3" data-wow-delay=".3s">
+                        </div>
+                        <div style="margin:10px">
+                          <h4 style="width:100%;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;"><a href="#">【統神】統粉斗內日常Part2 2017/01/01</a></h4>
+                          <p>亞洲統神(asiagodtonegg3be0)<span class="text-uppercase margin-l-20">Jan 1, 2017</span></p>
+                          <a class="link" href="#">Read More</a>
+                        </div>
+                    </div> -->
+                </div>
+                <!--// end row -->
+                <br>
+                <div class="row" id="latest2">
+                    <!-- <div class="col-sm-4 sm-margin-b-50">
+                        <div class="margin-b-20">
+                            <img class="img-responsive wow fadeIn test-popup-link" style="width:100%;cursor: pointer;" src="https://static-cdn.jtvnw.net/v1/AUTH_system/vods_8dd8/asiagodtonegg3be0_24112143456_575679468/thumb/thumb0-320x180.jpg" alt="Latest Products Image" data-wow-duration=".3" data-wow-delay=".1s">
+                        </div>
+                        <div style="margin:10px">
+                          <h4 style="width:100%;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;"><a href="#">【統神】統粉斗內日常Part3 精神耗弱篇 2017/01/02</a></h4>
+                          <p>亞洲統神(asiagodtonegg3be0)<span class="text-uppercase margin-l-20">Jan 3, 2017</span></p>
+                          <a class="link" href="#">Read More</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 sm-margin-b-50">
+                        <div class="margin-b-20">
+                            <img class="img-responsive wow fadeIn" style="width:100%"  src="https://static-cdn.jtvnw.net/v1/AUTH_system/vods_8dd8/asiagodtonegg3be0_24112143456_575679468/thumb/thumb0-320x180.jpg" alt="Latest Products Image" data-wow-duration=".3" data-wow-delay=".2s">
+                        </div>
+                        <div style="margin:10px">
+                          <h4 style="width:100%;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;"><a href="#">(B.F.)1/021新年新C望asiagodtone</a></h4>
+                          <p>亞洲統神(asiagodtonegg3be0)<span class="text-uppercase margin-l-20">Jan 2, 2017</span></p>
+                          <a class="link" href="#">Read More</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 sm-margin-b-50">
+                        <div class="margin-b-20">
+                            <img class="img-responsive wow fadeIn" style="width:100%"  src="https://static-cdn.jtvnw.net/s3_vods/4070a59568_asiagodtonegg3be0_24101036192_574985264//thumb/thumb111334214-320x180.jpg" alt="Latest Products Image" data-wow-duration=".3" data-wow-delay=".3s">
+                        </div>
+                        <div style="margin:10px">
+                          <h4 style="width:100%;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;"><a href="#">【統神】統粉斗內日常Part2 2017/01/01</a></h4>
+                          <p>亞洲統神(asiagodtonegg3be0)<span class="text-uppercase margin-l-20">Jan 1, 2017</span></p>
+                          <a class="link" href="#">Read More</a>
+                        </div>
+                    </div> -->
+                </div>
+                <!--// end row -->
+            </div>
+        </div>
+        <!-- End Products -->
+
+        <!-- Service -->
+        <div id="popular" class="bg=color-sky-light">
+          <div class="container content-lg">
+              <div class="row text-center margin-b-40">
+                  <div class="col-sm-6 col-sm-offset-3">
+                      <h2>Popular HighLights</h2>
+                      <p>The Most Popular HighLight recommand to you.</p>
+                  </div>
+              </div>
+              <!--// end row -->
+
+              <div class="row" id="popular1">
+
+              </div>
+              <!--// end row -->
+              <br>
+              <div class="row" id="popular2">
+
+              </div>
+              <!--// end row -->
+          </div>
+        </div>
+        <!-- End Service -->
+
+        <!-- Promo Banner -->
+        <div class="promo-banner">
+            <div class="container-sm content-lg">
+                <h2 class="promo-banner-title">Displaying the Result</h2>
+                <p class="promo-banner-text">We support and encourage ideas, services, tools and other creative works that use and supplement Twitch Brand Assets (meaning Twitch’s trademarks, logos, trade dress, web pages, copyrighted designs, original content, or other brand assets), but we’re required to protect our reputation and brand identity.</p>
+            </div>
+        </div>
+        <!-- End Promo Banner -->
+
+        <!-- Contact -->
+        <div id="contact">
+        </div>
+        <!-- End Contact -->
+        <!--========== END PAGE LAYOUT ==========-->
+
+        <!--========== FOOTER ==========-->
+        <footer class="footer">
+            <!-- Links -->
+            <div class="section-seperator">
+                <div class="content-md container">
+                    <div class="row">
+                        <div class="col-sm-2 sm-margin-b-30">
+                            <!-- List -->
+                            <ul class="list-unstyled footer-list">
+                                <li class="footer-list-item"><a href="#">Home</a></li>
+                                <li class="footer-list-item"><a href="#latest">Latest Highlight</a></li>
+                                <li class="footer-list-item"><a href="#popular">Popular Highlight</a></li>
+                                <li class="footer-list-item"><a href="#contact">Contact</a></li>
+                            </ul>
+                            <!-- End List -->
+                        </div>
+                        <div class="col-sm-2 sm-margin-b-30">
+                            <!-- List -->
+                            <ul class="list-unstyled footer-list">
+                                <li class="footer-list-item"><a target="_blank" href="https://github.com/rex5207">Github</a></li>
+                                <li class="footer-list-item"><a target="_blank" href="https://www.facebook.com/xPlusSeven">Facebook</a></li>
+                                <li class="footer-list-item"><a target="_blank" href="https://www.instagram.com/ab_ab533/">Instagram</a></li>
+                                <li class="footer-list-item"><a target="_blank" href="https://www.youtube.com/watch?v=dEKmE4738GM&feature=youtu.be">YouTube</a></li>
+                            </ul>
+                            <!-- End List -->
+                        </div>
+                        <div class="col-sm-3">
+                            <!-- List -->
+                            <ul class="list-unstyled footer-list">
+                                <li class="footer-list-item"><a target="_blank" href="https://www.twitch.tv/">Subscribe to Our Newsletter</a></li>
+                                <li class="footer-list-item"><a target="_blank" href="https://www.twitch.tv/p/privacy-policy">Privacy Policy</a></li>
+                                <li class="footer-list-item"><a target="_blank" href="https://www.twitch.tv/p/terms-of-service">Terms &amp; Conditions</a></li>
+                            </ul>
+                            <!-- End List -->
+                        </div>
+                    </div>
+                    <!--// end row -->
+                </div>
+            </div>
+            <!-- End Links -->
+
+            <!-- Copyright -->
+
+            <!-- End Copyright -->
+        </footer>
+        <!--========== END FOOTER ==========-->
+
+        <!-- Back To Top -->
+        <a href="javascript:void(0);" class="js-back-to-top back-to-top">Top</a>
+
+        <!-- JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+        <!-- CORE PLUGINS -->
+        <script src="vendor/jquery.min.js" type="text/javascript"></script>
+        <script src="vendor/jquery-migrate.min.js" type="text/javascript"></script>
+        <script src="vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/sweetalert.min.js"></script>
+
+
+        <!--Twitch Video-->
+        <script src="http://player.twitch.tv/js/embed/v1.js"></script>
+        <script type="text/javascript" src="js/player.js"></script>
+        <script type="text/javascript" src="js/videoInit.js"></script>
+        <script src="js/jquery.colorbox-min.js"></script>
+
+        <!--Word Cloud-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.12/d3.min.js"></script>
+        <script src="js/d3.layout.cloud.js", type='text/javascript'></script>
+        <script src="js/tag_cloud.js", type='text/javascript'></script>
+
+
+        <!-- PAGE LEVEL PLUGINS -->
+        <script src="vendor/jquery.easing.js" type="text/javascript"></script>
+        <script src="vendor/jquery.back-to-top.js" type="text/javascript"></script>
+        <script src="vendor/jquery.smooth-scroll.js" type="text/javascript"></script>
+        <script src="vendor/jquery.wow.min.js" type="text/javascript"></script>
+
+        <!-- PAGE LEVEL SCRIPTS -->
+        <script src="js/layout.min.js" type="text/javascript"></script>
+        <script src="js/components/wow.min.js" type="text/javascript"></script>
+
+    </body>
+    <!-- END BODY -->
+</html>
